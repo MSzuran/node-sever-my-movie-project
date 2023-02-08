@@ -4,8 +4,8 @@ const { MongoClient } = require('mongodb');
 const uri = process.env.DATABASE_URI;
 
 router.get('/', (req, res) => {
-  dbAccess();
-  res.send('hi');
+  const listOfDbs = dbAccess();
+  res.send('hi' + listOfDbs);
 })
 
 async function dbAccess() {
@@ -14,7 +14,6 @@ async function dbAccess() {
     await client.connect();
     console.log('connected to db');
     const dbLists = await client.db().admin().listDatabases();
-    console.log(dbLists.databases);
     return dbLists.databases;
   } catch (e) {
     console.error(e);
