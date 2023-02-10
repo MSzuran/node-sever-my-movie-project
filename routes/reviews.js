@@ -1,23 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const { MongoClient } = require('mongodb');
-const uri = process.env.DATABASE_URI;
+const Review = require('../models/reviewModel');
 
-router.get('/', (req, res) => {
-  const listOfDbs = dbAccess();
-  res.send('hi' + listOfDbs);
+router.get('/', async (req, res) => {
+  try {
+    const reviews = await Review.find();
+    res.json(reviews);
+  } catch (error) {
+    res.status(404);
+    console.error('can not get reviews :( ' + error);
+  }
 })
 
-async function dbAccess() {
-  const client = new MongoClient(uri);
+router.post('/addNew', async (req, res) => {
+  const { author, reviewDescription, movieId } = req.body.data;
   try {
-    await client.connect();
-    console.log('connected to db');
-    const dbLists = await client.db().admin().listDatabases();
-    return dbLists.databases;
-  } catch (e) {
-    console.error(e);
+    await Review.create({author, reviewDescription, movieId});
+    res.status(200);
+  } catch (error) {
+    res.status(400);
+    console.error('can not add new review :( ' + error);
   }
-}
+})
 
 module.exports = router;
