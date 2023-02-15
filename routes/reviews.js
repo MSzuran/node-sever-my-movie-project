@@ -2,10 +2,16 @@ const express = require('express');
 const router = express.Router();
 const Review = require('../models/reviewModel');
 
-router.get('/', async (req, res) => {
+router.get('/:movieId', async (req, res) => {
+  const { movieId } = req.params;
   try {
     const reviews = await Review.find();
-    res.json(reviews);
+    const filteredReviewsByMovieId = reviews.filter((review) => {
+      if (review.movieId === Number(movieId)) {
+        return review;
+      }
+    })
+    res.json(filteredReviewsByMovieId);
   } catch (error) {
     res.status(404);
     console.error('can not get reviews :( ' + error);
