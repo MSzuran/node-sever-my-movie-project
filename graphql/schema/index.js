@@ -3,21 +3,21 @@ const { buildSchema } = require('graphql');
 module.exports = buildSchema(`
   type Movie {
     _id: ID!
-    movieId: Int!
+    movieId: String!
     liked: Boolean
     favorite: Boolean
   }
 
   input MovieInput {
-    movieId: Int!
+    movieId: String!
     liked: Boolean
     favorite: Boolean
   }
 
   type Query {
-    getMovies: [Movie!]!
+    findMovieById(movieId: String!): Movie
   }
-
+  
   type Mutation {
     createMovie(movie: MovieInput): Movie
     addLike(movie: MovieInput): Movie

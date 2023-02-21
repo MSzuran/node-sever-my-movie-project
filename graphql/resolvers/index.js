@@ -1,17 +1,10 @@
-const Movie = require('../../models/movieModel');
 const createMovie = require('./createMovie');
 const addLike = require('./addLike');
 const addTofavorites = require('./addTofavorites');
+const findMovieById = require('./findMovieById');
 
 module.exports = {
-  movies: async () => {
-    try {
-      const moviesCollection = await Movie.find();
-      return moviesCollection;
-    } catch (error) {
-      console.log('can not get movies collection! :( ' + error);
-    }
-  },
+  findMovieById,
   createMovie,
   addLike,
   addTofavorites,
