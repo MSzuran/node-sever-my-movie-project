@@ -1,12 +1,17 @@
 const Movie = require('../../models/movieModel');
+const createMovie = require('./createMovie');
 
 const addTofavorites = async (args) => {
   try {
     const { movieId, favorite } = args.movie;
     const filter = { movieId };
     const update = { favorite };
-    const updated = await Movie.findOneAndUpdate(filter, update, { new: true });
-    return updated;
+    const updatedMovie = await Movie.findOneAndUpdate(filter, update, { new: true });
+    if (!updatedMovie) {
+      const newMovie = createMovie({movieId, favorite});
+      return newMovie;
+    }
+    return updatedMovie? updatedMovie : newMovie;
   } catch (error) {
     console.log('cannot update movies favorite! :(' + error);
   }

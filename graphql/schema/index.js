@@ -15,9 +15,9 @@ module.exports = buildSchema(`
   }
 
   type Query {
-    getMovies: [Movie!]!
+    findMovieById(movieId: Int!): Movie
   }
-
+  
   type Mutation {
     createMovie(movie: MovieInput): Movie
     addLike(movie: MovieInput): Movie

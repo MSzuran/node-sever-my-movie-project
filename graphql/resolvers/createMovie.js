@@ -2,7 +2,7 @@ const Movie = require('../../models/movieModel');
 
 const createMovie = async (args) => {
   try {
-    const { movieId, liked, favorite } = args.movie;
+    const { movieId, liked, favorite } = args;
     const movie = new Movie({
       movieId,
       liked,
