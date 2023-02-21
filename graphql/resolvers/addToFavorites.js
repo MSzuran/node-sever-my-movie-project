@@ -11,7 +11,7 @@ const addTofavorites = async (args) => {
       const newMovie = createMovie({movieId, favorite});
       return newMovie;
     }
-    return updatedMovie? updatedMovie : newMovie;
+    return updatedMovie || newMovie;
   } catch (error) {
     console.log('cannot update movies favorite! :(' + error);
   }
