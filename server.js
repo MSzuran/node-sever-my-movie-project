@@ -10,12 +10,14 @@ const graphqlResolvers = require('./graphql/resolvers')
 const uri = process.env.DATABASE_URI;
 const port = process.env.PORT;
 
-const router = require('./routes/reviews');
+const reviewsRoute = require('./routes/reviews');
+const favoritesRoute = require('./routes/favorites');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use('/api/reviews', router);
+app.use('/api/reviews', reviewsRoute);
+app.use('/api/favorites', favoritesRoute);
 
 app.use('/graphql', graphqlHTTP({
   schema: graphqlSchema,
