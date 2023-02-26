@@ -5,6 +5,13 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  poster: {
+    type: String,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
   liked: {
     type: Boolean,
     default: false,

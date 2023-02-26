@@ -4,12 +4,16 @@ module.exports = buildSchema(`
   type Movie {
     _id: ID!
     movieId: String!
+    poster: String
+    title: String!
     liked: Boolean
     favorite: Boolean
   }
 
   input MovieInput {
     movieId: String!
+    poster: String
+    title: String!
     liked: Boolean
     favorite: Boolean
   }

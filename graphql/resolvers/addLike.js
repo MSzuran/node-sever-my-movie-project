@@ -3,12 +3,12 @@ const createMovie = require('./createMovie');
 
 const addLike = async (args) => {
   try {
-    const { movieId, liked } = args.movie;
+    const { movieId, poster, title, liked } = args.movie;
     const filter = { movieId };
     const update = { liked };
     const updatedMovie = await Movie.findOneAndUpdate(filter, update, { new: true });
     if (!updatedMovie) {
-      const newMovie = createMovie({movieId, liked});
+      const newMovie = createMovie({movieId, poster, title, liked});
       return newMovie;
     }
     return updatedMovie? updatedMovie : newMovie;
