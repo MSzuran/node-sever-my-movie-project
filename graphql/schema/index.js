@@ -8,6 +8,7 @@ module.exports = buildSchema(`
     title: String!
     liked: Boolean
     favorite: Boolean
+    releaseDate: String!
   }
 
   input MovieInput {
@@ -16,6 +17,7 @@ module.exports = buildSchema(`
     title: String!
     liked: Boolean
     favorite: Boolean
+    releaseDate: String!
   }
 
   type Query {

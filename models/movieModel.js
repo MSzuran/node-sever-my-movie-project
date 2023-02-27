@@ -20,6 +20,10 @@ const movieSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  releaseDate: {
+    type: String,
+    required: true,
+  }
 })
 
 module.exports = mongoose.model('Movie', movieSchema);
