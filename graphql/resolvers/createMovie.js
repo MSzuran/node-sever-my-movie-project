@@ -2,12 +2,24 @@ const Movie = require('../../models/movieModel');
 
 const createMovie = async (args) => {
   try {
-    const { movieId, liked, favorite } = args;
-    const movie = new Movie({
+    const {
       movieId,
+      poster='',
+      title,
       liked,
       favorite,
+      releaseDate
+    } = args;
+    
+    const movie = new Movie({
+      movieId,
+      poster,
+      title,
+      liked,
+      favorite,
+      releaseDate,
     });
+
     const newMovie = await movie.save();
     return newMovie;
   } catch (error) {
