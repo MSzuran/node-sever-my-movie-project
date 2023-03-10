@@ -20,14 +20,30 @@ module.exports = buildSchema(`
     releaseDate: String!
   }
 
+  input MovieLikeInput {
+    movieId: String!
+    poster: String
+    title: String!
+    liked: Boolean!
+    releaseDate: String!
+  }
+
+  input MovieFavoriteInput {
+    movieId: String!
+    poster: String
+    title: String!
+    favorite: Boolean!
+    releaseDate: String!
+  }
+
   type Query {
     findMovieById(movieId: String!): Movie
   }
   
   type Mutation {
     createMovie(movie: MovieInput): Movie
-    addLike(movie: MovieInput): Movie
-    addTofavorites(movie: MovieInput): Movie
+    addLike(movie: MovieLikeInput): Movie
+    addTofavorites(movie: MovieFavoriteInput): Movie
   }
 
   schema {

@@ -8,7 +8,7 @@ const addTofavorites = async (args) => {
     const update = { favorite };
     const updatedMovie = await Movie.findOneAndUpdate(filter, update, { new: true });
     if (!updatedMovie) {
-      const newMovie = createMovie({movieId, poster, title, favorite, releaseDate});
+      const newMovie = createMovie({movieId, poster, title, favorite, releaseDate, liked: false});
       return newMovie;
     }
     return updatedMovie || newMovie;
